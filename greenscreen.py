@@ -35,7 +35,6 @@ exitKey = 27 #27=ESC
 resetKey = 13 #13=Enter
 
 cap = cv2.VideoCapture(webcam)
-fgbg = cv2.createBackgroundSubtractorKNN()
 
 ret, orig = cap.read() #set the starting position 
 #NOTE: Usually the camera hasn't finished starting at this point
@@ -69,8 +68,6 @@ def find_dif(orig, img, thr = 10):
 while True:
     
     ret, frame = cap.read()
-    #masking options
-    #fgmask = fgbg.apply(frame)
     fgmask = find_dif(orig, frame, thresh)
 
     #Greenscreen creation
@@ -91,7 +88,6 @@ while True:
     if k == exitKey:
         break
     if k == resetKey:
-        fgbg = cv2.createBackgroundSubtractorKNN()
         ret, orig = cap.read()
 cap.release()
 cv2.destroyAllWindows()
