@@ -8,7 +8,10 @@ webcam = 0
 debug = True
 
 #greenscreen color
-color = (0, 255, 0)
+r = 0
+g = 255
+b = 0
+color = (r, g, b)
 
 #Show the webcam instead of the greenscreen.
 showWebcam = False
