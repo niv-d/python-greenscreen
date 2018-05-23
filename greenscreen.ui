@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>524</width>
-    <height>336</height>
+    <height>358</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -52,7 +52,7 @@
       <x>10</x>
       <y>200</y>
       <width>501</width>
-      <height>121</height>
+      <height>131</height>
      </rect>
     </property>
     <property name="title">
@@ -99,9 +99,9 @@
     <widget class="QSlider" name="horizontalSliderNoiseSize">
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>260</x>
        <y>60</y>
-       <width>241</width>
+       <width>181</width>
        <height>41</height>
       </rect>
      </property>
@@ -118,7 +118,7 @@
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>260</x>
        <y>30</y>
        <width>251</width>
        <height>25</height>
@@ -126,6 +126,19 @@
      </property>
      <property name="text">
       <string>Size (0-100)</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelSize">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>70</y>
+       <width>41</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>100</string>
      </property>
     </widget>
    </widget>
@@ -241,17 +254,33 @@
     <property name="title">
      <string>Threshold</string>
     </property>
-    <widget class="QSlider" name="horizontalSlider">
+    <widget class="QSlider" name="horizontalSliderThresh">
      <property name="geometry">
       <rect>
        <x>20</x>
        <y>50</y>
-       <width>221</width>
+       <width>181</width>
        <height>41</height>
       </rect>
      </property>
+     <property name="maximum">
+      <number>100</number>
+     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="labelThresh">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>60</y>
+       <width>41</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>100</string>
      </property>
     </widget>
    </widget>
@@ -276,5 +305,38 @@
   </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>horizontalSliderThresh</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>labelThresh</receiver>
+   <slot>setNum(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>380</x>
+     <y>140</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>480</x>
+     <y>142</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>horizontalSliderNoiseSize</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>labelSize</receiver>
+   <slot>setNum(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>360</x>
+     <y>280</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>480</x>
+     <y>282</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
