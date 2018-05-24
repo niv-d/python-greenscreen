@@ -4,6 +4,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import (QCoreApplication, QObject, QThread, pyqtSignal)
 
 class GreenThread(QThread):
+    def reset(self):
+        print("no")
     def toggleShowWebcam(self):
         self.showWebcam = not self.showWebcam
     def setWebcam(self, index):
@@ -29,7 +31,6 @@ class GreenThread(QThread):
         super(GreenThread, self).__init__()
         #Webcam Number
         self.webcam = 0
-        self.cap = cv2.VideoCapture(self.webcam)
         #greenscreen color
         self.r = 0
         self.g = 255
@@ -70,7 +71,8 @@ class GreenThread(QThread):
         grn_screen[:] = self.color #Make all those bytes a color (green! blue! purple! who cares!)
         
         while True:
-            #grn_screen[:] = self.color
+            grn_screen[:] = self.color
+            
             ret, frame = self.cap.read()
             fgmask = self.find_dif(self.orig, frame, self.thresh)
 
