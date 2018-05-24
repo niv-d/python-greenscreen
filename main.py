@@ -18,7 +18,7 @@ def main():
     m.show()
     thread.finished.connect(app.exit)
     thread.start()
-    thread.setWebcam(1)
+    thread.setWebcam(0)
 
     m.ui.pushButtonReset.clicked.connect(thread.reset)
     m.ui.checkBoxGreenScreen.clicked.connect(thread.toggleShowWebcam)

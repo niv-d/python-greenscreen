@@ -5,11 +5,12 @@ from PyQt5.QtCore import (QCoreApplication, QObject, QThread, pyqtSignal)
 
 class GreenThread(QThread):
     def reset(self):
-        print("no")
+        ret, self.orig = self.cap.read()
     def toggleShowWebcam(self):
         self.showWebcam = not self.showWebcam
     def setWebcam(self, index):
         self.webcam = index
+        self.capUpdate = True
     def setR(self, r_):
         self.r = r_
         self.color = (self.r, self.g, self.b)
@@ -31,6 +32,7 @@ class GreenThread(QThread):
         super(GreenThread, self).__init__()
         #Webcam Number
         self.webcam = 0
+        self.capUpdate = False
         #greenscreen color
         self.r = 0
         self.g = 255
@@ -70,7 +72,11 @@ class GreenThread(QThread):
         grn_screen = np.zeros(self.orig.shape, np.uint8) #an array of bytes the same size as our image
         grn_screen[:] = self.color #Make all those bytes a color (green! blue! purple! who cares!)
         
-        while True:
+        while self.cap.isOpened():
+            if self.capUpdate:
+                self.cap.release()
+                self.cap = cv2.VideoCapture(self.webcam)
+                self.capUpdate = False
             grn_screen[:] = self.color
             
             ret, frame = self.cap.read()
@@ -90,11 +96,11 @@ class GreenThread(QThread):
                 cv2.imshow('mask', fgmask)
             cv2.imshow('result', wgs)
 
-            k = cv2.waitKey(25) & 0xff
-            if k == exitKey:
-                break
-            if k == resetKey:
-                ret, self.orig = self.cap.read()
+            #k = cv2.waitKey(25) & 0xff
+            #if k == exitKey:
+            #    break
+            #if k == resetKey:
+            #   ret, self.orig = self.cap.read()
         self.cap.release()
         cv2.destroyAllWindows()
     def find_dif(self, orig, img, thr = 10):
