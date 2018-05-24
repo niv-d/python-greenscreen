@@ -4,8 +4,7 @@ import cv2
 import numpy as np
 from gsui import Ui_MainWindow
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import (QCoreApplication, QObject, QRunnable, QThread,
-                          QThreadPool, pyqtSignal)
+from PyQt5.QtCore import (QCoreApplication, QObject, QThread)
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent = None):
