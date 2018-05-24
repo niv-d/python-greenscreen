@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>582</width>
-    <height>368</height>
+    <width>578</width>
+    <height>331</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -27,13 +27,6 @@
        <string>Noise Removal</string>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="1" colspan="2">
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>Size</string>
-         </property>
-        </widget>
-       </item>
        <item row="1" column="0">
         <widget class="QComboBox" name="comboBoxNoise">
          <property name="toolTip">
@@ -60,13 +53,6 @@
         <widget class="QLabel" name="labelSize">
          <property name="text">
           <string>30</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label">
-         <property name="text">
-          <string>Type</string>
          </property>
         </widget>
        </item>
@@ -106,6 +92,12 @@
     </item>
     <item row="0" column="0">
      <widget class="QPushButton" name="pushButtonReset">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="toolTip">
        <string>Capture a new frame for reference.</string>
       </property>
