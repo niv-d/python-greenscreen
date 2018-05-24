@@ -22,7 +22,7 @@ def main():
 
     m.ui.pushButtonReset.clicked.connect(thread.reset)
     m.ui.checkBoxGreenScreen.clicked.connect(thread.toggleShowWebcam)
-    m.ui.spinBoxBlueCam.valueChanged.connect(lambda: thread.setWebcam(m.ui.spinBoxBlueCam.value()))
+    m.ui.spinBoxCam.valueChanged.connect(lambda: thread.setWebcam(m.ui.spinBoxCam.value()))
     m.ui.spinBoxRed.valueChanged.connect(lambda: thread.setB(m.ui.spinBoxRed.value()))
     m.ui.spinBoxGreen.valueChanged.connect(lambda: thread.setG(m.ui.spinBoxGreen.value()))
     m.ui.spinBoxBlue.valueChanged.connect(lambda: thread.setR(m.ui.spinBoxBlue.value()))

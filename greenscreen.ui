@@ -311,7 +311,7 @@
     <zorder>checkBoxGreenScreen</zorder>
     <zorder>pushButtonReset</zorder>
    </widget>
-   <widget class="QSpinBox" name="spinBoxBlueCam">
+   <widget class="QSpinBox" name="spinBoxCam">
     <property name="geometry">
      <rect>
       <x>410</x>
