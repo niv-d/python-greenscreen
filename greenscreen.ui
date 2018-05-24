@@ -193,7 +193,7 @@
       <number>255</number>
      </property>
      <property name="value">
-      <number>255</number>
+      <number>0</number>
      </property>
     </widget>
     <widget class="QSpinBox" name="spinBoxBlue">
@@ -209,7 +209,7 @@
       <number>255</number>
      </property>
      <property name="value">
-      <number>255</number>
+      <number>0</number>
      </property>
     </widget>
     <widget class="QLabel" name="label_3">
@@ -301,6 +301,22 @@
     </property>
     <zorder>checkBoxGreenScreen</zorder>
     <zorder>pushButtonReset</zorder>
+   </widget>
+   <widget class="QSpinBox" name="spinBoxBlueCam">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>20</y>
+      <width>61</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>255</number>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
    </widget>
   </widget>
  </widget>

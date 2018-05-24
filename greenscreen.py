@@ -65,7 +65,6 @@ def find_dif(orig, img, thr = 10):
 
 #main loop
 while True:
-    
     ret, frame = cap.read()
     fgmask = find_dif(orig, frame, thresh)
 
