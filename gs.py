@@ -94,7 +94,7 @@ class GreenThread(QThread):
             if debug:
                 cv2.imshow('orig', frame)
                 cv2.imshow('mask', fgmask)
-            cv2.imshow('result', wgs)
+            cv2.imshow('Greenscreen', wgs)
 
             k = cv2.waitKey(25) & 0xff
             #if k == exitKey:

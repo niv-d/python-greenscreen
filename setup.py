@@ -12,9 +12,9 @@ options = {
 }
 
 setup(
-    name = "<any name>",
+    name = "Python Greenscreen",
     options = options,
-    version = "<any number>",
-    description = '<any description>',
+    version = "0.1.0",
+    description = 'Create greenscreen with any webcam',
     executables = executables
 )
