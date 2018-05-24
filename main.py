@@ -37,18 +37,15 @@ class AThread(QThread):
         self.kernelSize = (size, size)
     def setThreshold(self, thresh):
         self.thresh = thresh
-    def run(self):
+    def __init__(self):
+        super(AThread, self).__init__()
         #Webcam Number
         self.webcam = 0
-
-        #Show the other windows, fgmask and raw webcam
-        debug = False
 
         #greenscreen color
         self.r = 0
         self.g = 255
         self.b = 0
-        color = (self.r, self.g, self.b)
 
         #Show the webcam instead of the greenscreen.
         self.showWebcam = False
@@ -66,6 +63,11 @@ class AThread(QThread):
 
         #threshold of the difference between
         self.thresh = 30
+    def run(self):
+        #Show the other windows, fgmask and raw webcam
+        debug = False
+
+        color = (self.r, self.g, self.b)
 
         #KEYS
         exitKey = 27 #27=ESC
