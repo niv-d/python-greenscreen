@@ -4,7 +4,7 @@ import numpy as np
 webcam = 0
 
 #Show the other windows, fgmask and raw webcam
-debug = True
+debug = False
 
 #greenscreen color
 r = 0
