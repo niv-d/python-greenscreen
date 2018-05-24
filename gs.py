@@ -96,7 +96,7 @@ class GreenThread(QThread):
                 cv2.imshow('mask', fgmask)
             cv2.imshow('result', wgs)
 
-            #k = cv2.waitKey(25) & 0xff
+            k = cv2.waitKey(25) & 0xff
             #if k == exitKey:
             #    break
             #if k == resetKey:
