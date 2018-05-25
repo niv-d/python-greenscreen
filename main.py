@@ -20,7 +20,7 @@ def main():
     thread.start()
     thread.setWebcam(0)
 
-    m.ui.pushButtonReset.clicked.connect(thread.reset)
+    m.ui.pushButtonReset.clicked.connect(lambda: reset(m.ui.spinBoxDelay.value()))
     m.ui.checkBoxGreenScreen.clicked.connect(thread.toggleShowWebcam)
     m.ui.spinBoxCam.valueChanged.connect(lambda: thread.setWebcam(m.ui.spinBoxCam.value()))
     m.ui.spinBoxRed.valueChanged.connect(lambda: thread.setB(m.ui.spinBoxRed.value()))
@@ -31,6 +31,12 @@ def main():
     m.ui.horizontalSliderNoiseSize.valueChanged.connect(lambda: thread.setKernelSize(m.ui.horizontalSliderNoiseSize.value()))
     
     sys.exit (app.exec_())
+def reset(delay):
+    count = 0
+    while count < delay:
+        time.sleep(1)
+        count += 1
+    thread.reset()
 
 
 if __name__ == '__main__':
