@@ -41,7 +41,7 @@ class GreenThread(QThread):
     def setKernelSize(self, size):
         self.kernelSize = (size, size)
     def getKSize(self):
-        return self.kernelSize
+        return self.kernelSize[0]
     def __init__(self):
         super(GreenThread, self).__init__()
         #Webcam Number

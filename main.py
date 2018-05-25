@@ -7,7 +7,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import (QCoreApplication, QObject, QThread, pyqtSignal)
 from gs import GreenThread
 import atexit
-from configparser  import SafeConfigParser
+import configparser
 
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent = None):
@@ -23,9 +23,14 @@ def main():
     m.show()
     thread.finished.connect(app.exit)
     thread.start()
-
-
+    
     thread.setWebcam(0)
+
+    config = configparser.ConfigParser()
+    config.sections()
+    config.read(filename)
+    
+
 
     m.ui.pushButtonReset.clicked.connect(lambda: reset(m.ui.spinBoxDelay.value()))
     m.ui.checkBoxGreenScreen.clicked.connect(thread.toggleShowWebcam)
@@ -40,7 +45,7 @@ def main():
     sys.exit (app.exec_())
 
 def exit_handler():
-    config = SafeConfigParser()
+    config = configparser.ConfigParser()
     config.add_section('main')
     config.set('main', 'delay', str(0))
     config.set('main', 'camera', str(thread.getWebcam()))
