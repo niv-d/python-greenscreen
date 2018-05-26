@@ -31,12 +31,19 @@ def main():
     mc = config['main']
 
     thread.setWebcam(int(mc['camera']))
-    thread.setR(int(mc['b']))
-    thread.setG(int(mc['g']))
+    m.ui.spinBoxCam.setValue(int(mc['camera']))
     thread.setB(int(mc['r'])) #for some reason these are backwards :p
+    m.ui.spinBoxRed.setValue(int(mc['r']))
+    thread.setG(int(mc['g']))
+    m.ui.spinBoxGreen.setValue(int(mc['g']))
+    thread.setR(int(mc['b']))
+    m.ui.spinBoxBlue.setValue(int(mc['b']))
     thread.setThreshold(int(mc['threshold']))
+    m.ui.horizontalSliderThresh.setValue(int(mc['threshold']))
     thread.setKernelType(int(mc['type']))
+    m.ui.comboBoxNoise.setCurrentIndex(int(mc['type']))
     thread.setKernelSize(int(mc['noisereduction']))
+    m.ui.horizontalSliderNoiseSize.setValue(int(mc['noisereduction']))
 
 
 
