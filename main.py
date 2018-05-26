@@ -16,7 +16,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.setupUi(self)
 thread = GreenThread()
 filename = "greenscreen_settings.ini"
-dela = 0
+delay = 0
 def main():
     app = QtWidgets.QApplication(sys.argv)
     m = MainWindow()
@@ -27,9 +27,17 @@ def main():
     thread.setWebcam(0)
 
     config = configparser.ConfigParser()
-    config.sections()
     config.read(filename)
-    
+    mc = config['main']
+    delay = int(mc['delay'])
+    thread.setWebcam(int(mc['camera']))
+    thread.setB(int(mc['r'])) #for some reason these are backwards :P
+    thread.setG(int(mc['g']))
+    thread.setR(int(mc['b']))
+    thread.setThreshold(int(mc['threshold']))
+    thread.setKernelType(int(mc['type']))
+    thread.setKernelSize(int(mc['noisereduction']))
+
 
 
     m.ui.pushButtonReset.clicked.connect(lambda: reset(m.ui.spinBoxDelay.value()))
@@ -47,11 +55,11 @@ def main():
 def exit_handler():
     config = configparser.ConfigParser()
     config.add_section('main')
-    config.set('main', 'delay', str(0))
+    config.set('main', 'delay', str(delay))
     config.set('main', 'camera', str(thread.getWebcam()))
-    config.set('main', 'r', str(thread.getR()))
+    config.set('main', 'r', str(thread.getB()))
     config.set('main', 'g', str(thread.getG()))
-    config.set('main', 'b', str(thread.getB()))
+    config.set('main', 'b', str(thread.getR()))
     config.set('main', 'threshold', str(thread.getThresh()))
     config.set('main', 'type', str(thread.getType()))
     config.set('main', 'noisereduction', str(thread.getKSize()))
@@ -59,10 +67,10 @@ def exit_handler():
     with open(filename, 'w') as f:
         config.write(f)
     print("exit")
-def reset(delay):
-    dela = delay
+def reset(d):
+    delay = d
     count = 0
-    while count < delay:
+    while count < d:
         time.sleep(1)
         count += 1
     thread.reset()
