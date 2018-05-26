@@ -29,11 +29,11 @@ def main():
     config = configparser.ConfigParser()
     config.read(filename)
     mc = config['main']
-    delay = int(mc['delay'])
+
     thread.setWebcam(int(mc['camera']))
-    thread.setB(int(mc['r'])) #for some reason these are backwards :P
-    thread.setG(int(mc['g']))
     thread.setR(int(mc['b']))
+    thread.setG(int(mc['g']))
+    thread.setB(int(mc['r'])) #for some reason these are backwards :p
     thread.setThreshold(int(mc['threshold']))
     thread.setKernelType(int(mc['type']))
     thread.setKernelSize(int(mc['noisereduction']))
@@ -68,11 +68,7 @@ def exit_handler():
         config.write(f)
     print("exit")
 def reset(d):
-    delay = d
-    count = 0
-    while count < d:
-        time.sleep(1)
-        count += 1
+    time.sleep(d)
     thread.reset()
 
 
