@@ -23,27 +23,29 @@ def main():
     m.show()
     thread.finished.connect(app.exit)
     thread.start()
-    
     thread.setWebcam(0)
 
-    config = configparser.ConfigParser()
-    config.read(filename)
-    mc = config['main']
-
-    thread.setWebcam(int(mc['camera']))
-    m.ui.spinBoxCam.setValue(int(mc['camera']))
-    thread.setB(int(mc['r'])) #for some reason these are backwards :p
-    m.ui.spinBoxRed.setValue(int(mc['r']))
-    thread.setG(int(mc['g']))
-    m.ui.spinBoxGreen.setValue(int(mc['g']))
-    thread.setR(int(mc['b']))
-    m.ui.spinBoxBlue.setValue(int(mc['b']))
-    thread.setThreshold(int(mc['threshold']))
-    m.ui.horizontalSliderThresh.setValue(int(mc['threshold']))
-    thread.setKernelType(int(mc['type']))
-    m.ui.comboBoxNoise.setCurrentIndex(int(mc['type']))
-    thread.setKernelSize(int(mc['noisereduction']))
-    m.ui.horizontalSliderNoiseSize.setValue(int(mc['noisereduction']))
+    try:
+        config = configparser.ConfigParser()
+        config.read(filename)
+        mc = config['main']
+        m.ui.spinBoxDelay.setValue(delay)
+        thread.setWebcam(int(mc['camera']))
+        m.ui.spinBoxCam.setValue(int(mc['camera']))
+        thread.setB(int(mc['r'])) #for some reason these are backwards :p
+        m.ui.spinBoxRed.setValue(int(mc['r']))
+        thread.setG(int(mc['g']))
+        m.ui.spinBoxGreen.setValue(int(mc['g']))
+        thread.setR(int(mc['b']))
+        m.ui.spinBoxBlue.setValue(int(mc['b']))
+        thread.setThreshold(int(mc['threshold']))
+        m.ui.horizontalSliderThresh.setValue(int(mc['threshold']))
+        thread.setKernelType(int(mc['type']))
+        m.ui.comboBoxNoise.setCurrentIndex(int(mc['type']))
+        thread.setKernelSize(int(mc['noisereduction']))
+        m.ui.horizontalSliderNoiseSize.setValue(int(mc['noisereduction']))
+    except:
+        print("No config!")
 
 
 
@@ -73,7 +75,7 @@ def exit_handler():
 
     with open(filename, 'w') as f:
         config.write(f)
-    print("exit")
+
 def reset(d):
     time.sleep(d)
     thread.reset()
