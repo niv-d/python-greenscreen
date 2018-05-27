@@ -1,11 +1,13 @@
 # Python-Greenscreen
-This is a python script (and windows binary if you head over to release) designed to take a normal webcams footage and add a greenscreen to it.
+This is a python script (and windows binary if you head over to release) designed to take a normal webcams footage and add a greenscreen to it. Virtually. It's a virtual greenscreen!
 ## How it Works
 Insight on how it works may give you a better start at using it. 
 
 When the application first launches it takes a frame from the webcam. This frame is used as reference(you can reset this reference by hitting enter(the script version) or the reset button(the GUI version)). 
 
 Any differences between the captured frame and the current frame will be turned into the greenscreen. To tweak this there is a tolerence and noise removeal options documented further below.
+
+All this using minimal CPU usage, roughly <5% on my main system (an i7 4790k)
 ## Getting Started
 
 For windows, you can find windows binaries on the Github release page.
