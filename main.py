@@ -16,7 +16,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ui.setupUi(self)
 thread = GreenThread()
 filename = "greenscreen_settings.ini"
-delay = 0
+#delay = 0
 def main():
     app = QtWidgets.QApplication(sys.argv)
     m = MainWindow()
@@ -29,7 +29,7 @@ def main():
         config = configparser.ConfigParser()
         config.read(filename)
         mc = config['main']
-        delay = int(mc['delay'])
+        #delay = int(mc['delay'])
         thread.setWebcam(int(mc['webcam']))
         thread.setR(int(mc['r']))
         thread.setG(int(mc['g']))
@@ -40,7 +40,7 @@ def main():
     except:
         print("No config!")
 
-    m.ui.spinBoxDelay.setValue(delay)
+    #m.ui.spinBoxDelay.setValue(delay)
     m.ui.spinBoxCam.setValue(thread.getWebcam())
     m.ui.spinBoxRed.setValue(thread.getR())
     m.ui.spinBoxGreen.setValue(thread.getG())
@@ -65,7 +65,7 @@ def main():
 def exit_handler():
     config = configparser.ConfigParser()
     config.add_section('main')
-    config.set('main', 'delay', str(delay))
+    #config.set('main', 'delay', str(delay))
     config.set('main', 'webcam', str(thread.getWebcam()))
     config.set('main', 'r', str(thread.getR()))
     config.set('main', 'g', str(thread.getG()))
