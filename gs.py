@@ -11,23 +11,39 @@ class GreenThread(QThread):
     def setWebcam(self, index):
         self.webcam = index
         self.capUpdate = True
+    def getWebcam(self):
+        return self.webcam
     def setR(self, r_):
         self.r = r_
-        self.color = (self.r, self.g, self.b)
+        self.setColor()
+    def getR(self):
+        return self.r
     def setG(self, g_):
         self.g = g_
-        self.color = (self.r, self.g, self.b)
+        self.setColor()
+    def getG(self):
+        return self.g
     def setB(self, b_):
         self.b = b_
-        self.color = (self.r, self.g, self.b)
+        self.setColor()
+    def setColor(self):
+        self.color = (self.b, self.g, self.r)
+    def getB(self):
+        return self.b
     def setShowWebcam(self, yesorno):
         self.showWebcam = yesorno
     def setThreshold(self, thresh):
         self.thresh = thresh
+    def getThreshold(self):
+        return self.thresh
     def setKernelType(self, type):
         self.kernelType = type
+    def getKernelType(self):
+        return self.kernelType
     def setKernelSize(self, size):
         self.kernelSize = (size, size)
+    def getKernelSize(self):
+        return self.kernelSize[0]
     def __init__(self):
         super(GreenThread, self).__init__()
         #Webcam Number
