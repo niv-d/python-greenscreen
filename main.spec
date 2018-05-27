@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['main.py'],
-             pathex=['C:\\Users\\dmratcliffe\\Git\\python-greenscreen'],
+             pathex=['C:\\Users\\dmrat\\Git\\python-greenscreen'],
              binaries=[],
              datas=[],
              hiddenimports=[],

@@ -1,5 +1,7 @@
 build
-distd
+dist
 compileui.bat
 __pycache__
 greenscreen_settings.ini
+setup.py
+main.spec
