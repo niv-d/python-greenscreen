@@ -2,7 +2,7 @@ from cx_Freeze import setup, Executable
 
 base = None    
 
-executables = [Executable("main.py", base=base)]
+executables = [Executable("main.py", base = "Win32GUI")]
 
 packages = ["idna","cv2","numpy","PyQt5"]
 options = {
