@@ -1,1 +1,0 @@
-pyinstaller.exe --onefile --windowed main.py
