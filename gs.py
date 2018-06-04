@@ -87,38 +87,42 @@ class GreenThread(QThread):
 
         grn_screen = np.zeros(self.orig.shape, np.uint8) #an array of bytes the same size as our image
         grn_screen[:] = self.color #Make all those bytes a color (green! blue! purple! who cares!)
-        
-        while self.cap.isOpened():
+        while True:
+            self.cap.release()
+            cv2.destroyAllWindows()
             if self.capUpdate:
                 self.cap.release()
                 self.cap = cv2.VideoCapture(self.webcam)
                 self.capUpdate = False
-            grn_screen[:] = self.color
-            
-            ret, frame = self.cap.read()
-            fgmask = self.find_dif(self.orig, frame, self.thresh)
+            while self.cap.isOpened():
+                grn_screen[:] = self.color
+                
+                ret, frame = self.cap.read()
+                fgmask = self.find_dif(self.orig, frame, self.thresh)
 
-            #Greenscreen creation
-            bgmask = cv2.bitwise_not(fgmask) #invert foreground
-            fgimg = cv2.bitwise_and(frame,frame, mask = fgmask) #cut out the foreground
-            bgimg = cv2.bitwise_and(grn_screen,grn_screen, mask = bgmask) #cut out the background
-            wgs = cv2.add(fgimg,bgimg) #combine each cut
+                #Greenscreen creation
+                bgmask = cv2.bitwise_not(fgmask) #invert foreground
+                fgimg = cv2.bitwise_and(frame,frame, mask = fgmask) #cut out the foreground
+                bgimg = cv2.bitwise_and(grn_screen,grn_screen, mask = bgmask) #cut out the background
+                wgs = cv2.add(fgimg,bgimg) #combine each cut
 
-            if self.showWebcam:
-                wgs = frame
+                if self.showWebcam:
+                    wgs = frame
 
-            if debug:
-                cv2.imshow('orig', frame)
-                cv2.imshow('mask', fgmask)
-            cv2.imshow('Greenscreen', wgs)
+                if debug:
+                    cv2.imshow('orig', frame)
+                    cv2.imshow('mask', fgmask)
+                cv2.imshow('Greenscreen', wgs)
 
-            k = cv2.waitKey(25) & 0xff
-            #if k == exitKey:
-            #    break
-            #if k == resetKey:
-            #   ret, self.orig = self.cap.read()
-        self.cap.release()
-        cv2.destroyAllWindows()
+                k = cv2.waitKey(25) & 0xff
+                #if k == exitKey:
+                #    break
+                #if k == resetKey:
+                #   ret, self.orig = self.cap.read()
+                if self.capUpdate:
+                    self.cap.release()
+                    self.cap = cv2.VideoCapture(self.webcam)
+                    self.capUpdate = False
     def find_dif(self, orig, img, thr = 10):
         diff = cv2.absdiff(orig,img) #Find the difference
         diff[diff < thr] = 0 #Remove the difference if it meets the thresh

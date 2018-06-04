@@ -5,3 +5,6 @@ __pycache__
 greenscreen_settings.ini
 setup.py
 main.spec
+main.exe
+*.ini
+*.bat
