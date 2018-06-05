@@ -20,6 +20,8 @@ Some things before we begin:
 This script works off of the difference between two frames of reference. Because of that, you need to keep changes in your enviroment to a minimum. The hardest part of this rule might be lighting. You need good (or atleast consistent) lighting to really be able to get decent results. Camera angle also helps, if you can hide any reflections or shadows that works too.
 
 Quickstart:
+
+*please make sure that your webcam is not being used by anything else*
 1. Make sure your webcam is plugged in, the script may crash if it's not plugged in.
 2. Click the reset button while there is no movement and you (or your subject) is out of frame. You can use the timer to help with this.
 3. If you need to change the color of the greenscreen, go for it its the R G B values.
