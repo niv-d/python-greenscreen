@@ -44,6 +44,10 @@ class GreenThread(QThread):
         self.kernelSize = (size, size)
     def getKernelSize(self):
         return self.kernelSize[0]
+    def kill(self):
+        self.running = False
+        self.cap.release()
+        cv2.destroyAllWindows()
     def __init__(self):
         super(GreenThread, self).__init__()
         #Webcam Number
@@ -76,8 +80,8 @@ class GreenThread(QThread):
         debug = False
 
         #KEYS
-        exitKey = 27 #27=ESC
-        resetKey = 13 #13=Enter
+        #exitKey = 27 #27=ESC
+        #resetKey = 13 #13=Enter
 
         self.cap = cv2.VideoCapture(self.webcam)
 
@@ -87,14 +91,14 @@ class GreenThread(QThread):
 
         grn_screen = np.zeros(self.orig.shape, np.uint8) #an array of bytes the same size as our image
         grn_screen[:] = self.color #Make all those bytes a color (green! blue! purple! who cares!)
-        while True:
+
+        self.running = True #So we can kill it later
+        while self.running:
+            #if this code is running, we aren't connected to a camera, it just tries to connect to a camera
             self.cap.release()
             cv2.destroyAllWindows()
-            if self.capUpdate:
-                self.cap.release()
-                self.cap = cv2.VideoCapture(self.webcam)
-                self.capUpdate = False
-            while self.cap.isOpened():
+            self.cap = cv2.VideoCapture(self.webcam)
+            while self.cap.isOpened(): #when connected to a camera do all this
                 grn_screen[:] = self.color
                 
                 ret, frame = self.cap.read()
@@ -114,15 +118,16 @@ class GreenThread(QThread):
                     cv2.imshow('mask', fgmask)
                 cv2.imshow('Greenscreen', wgs)
 
-                k = cv2.waitKey(25) & 0xff
+                k = cv2.waitKey(25) & 0xff #delay for frames
                 #if k == exitKey:
                 #    break
                 #if k == resetKey:
                 #   ret, self.orig = self.cap.read()
-                if self.capUpdate:
+                if self.capUpdate: #check and see if the user wants to change the camera
                     self.cap.release()
                     self.cap = cv2.VideoCapture(self.webcam)
-                    self.capUpdate = False
+                    self.capUpdate = False #finished changing camera
+
     def find_dif(self, orig, img, thr = 10):
         diff = cv2.absdiff(orig,img) #Find the difference
         diff[diff < thr] = 0 #Remove the difference if it meets the thresh

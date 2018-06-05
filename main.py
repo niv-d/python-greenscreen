@@ -63,19 +63,24 @@ def main():
     sys.exit (app.exec_())
 
 def exit_handler():
-    config = configparser.ConfigParser()
-    config.add_section('main')
-    #config.set('main', 'delay', str(delay))
-    config.set('main', 'webcam', str(thread.getWebcam()))
-    config.set('main', 'r', str(thread.getR()))
-    config.set('main', 'g', str(thread.getG()))
-    config.set('main', 'b', str(thread.getB()))
-    config.set('main', 'threshold', str(thread.getThreshold()))
-    config.set('main', 'kernelType', str(thread.getKernelType()))
-    config.set('main', 'kernelSize', str(thread.getKernelSize()))
+    try:
+        config = configparser.ConfigParser()
+        config.add_section('main')
+        #config.set('main', 'delay', str(delay))
+        config.set('main', 'webcam', str(thread.getWebcam()))
+        config.set('main', 'r', str(thread.getR()))
+        config.set('main', 'g', str(thread.getG()))
+        config.set('main', 'b', str(thread.getB()))
+        config.set('main', 'threshold', str(thread.getThreshold()))
+        config.set('main', 'kernelType', str(thread.getKernelType()))
+        config.set('main', 'kernelSize', str(thread.getKernelSize()))
 
-    with open(filename, 'w') as f:
-        config.write(f)
+        with open(filename, 'w') as f:
+            config.write(f)
+    except:
+        print("Failed to write config")
+
+    thread.kill()
 
 def reset(d):
     time.sleep(d)
