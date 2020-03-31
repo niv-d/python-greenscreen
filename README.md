@@ -13,7 +13,7 @@ All this using minimal CPU usage, roughly <5% on my main system (an i7 4790k)
 For windows, you can find windows binaries on the Github release page.
 Just download and run the executable named "main.exe"
 
-To watch a video of the setup process go [here]()
+To watch a video of the setup process go [here](https://www.youtube.com/watch?v=HpZxoBdegTE)
 or read the instructions below
 
 Some things before we begin:
@@ -31,7 +31,7 @@ Quickstart:
 
 All in all it really depends on the results you want and finding the sweet spot for your setup. Watch the videos for more information.
 
-[Indepth video of the functions]()
+[Indepth video of the functions](https://www.youtube.com/watch?v=HpZxoBdegTE)
 
 ### Prerequisites
 For running greenscreen.py (No GUI version)
